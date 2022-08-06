@@ -5,13 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart' as intl;
 
 class MyApp {
-  static const int EXPORT = 1;
-  static const int LOKAL = 2;
-  static const int WP = 3;
-  static const int PSI = 4;
-  static const int PCP = 5;
-  static const int SSU = 6;
-
   AppUser? appUser;
   static int TIMEOUT_DURATION_SECOND = 15;
   static intl.NumberFormat NUMBER_FORMAT = intl.NumberFormat.decimalPattern();
@@ -30,20 +23,5 @@ class MyApp {
   Future<void> loadEnvFile() async {
     await dotenv.load(fileName: '.env');
     apiUrl = dotenv.get('API_URL');
-  }
-
-  int isShowAllData() {
-    if (appUser!.tipeUser == 1) {
-      return 1;
-    }
-    return 0;
-  }
-
-  int showAllData() {
-    return 1;
-  }
-
-  int getBcId() {
-    return appUser!.id!;
   }
 }
