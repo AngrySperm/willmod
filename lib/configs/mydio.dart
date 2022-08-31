@@ -32,6 +32,10 @@ class MyDio {
     }
   }
 
+  dio.Dio? getDio() {
+    return _dio;
+  }
+
   void successLogin(token) {
     if (_dio == null) {
       _initialize();
@@ -50,9 +54,13 @@ class MyDio {
 
     if (_dio == null) await _initialize();
 
+    _dio!.options.headers[HttpHeaders.contentTypeHeader] = 'application/json';
+
     var newBody = body;
     if (formBody != null) {
       newBody = dio.FormData.fromMap(formBody);
+      _dio!.options.headers[HttpHeaders.contentTypeHeader] =
+          'multipart/form-data';
     }
 
     late var response;
