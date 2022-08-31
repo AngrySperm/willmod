@@ -20,6 +20,7 @@ dependencies:
   json_annotation: 4.4.0
   flutter_dotenv: 5.0.2
   shared_preferences: 2.0.7
+  local_auth: 2.1.0
 
   # # Production
   # flutter_native_splash: 1.2.4
@@ -36,6 +37,7 @@ dependencies:
   flutter_easyloading: 3.0.3
   google_fonts: 2.0.0
   loadmore: 2.0.1
+  calendar_view: 0.0.5
   wave: 0.2.0
 
 dev_dependencies:
@@ -52,7 +54,6 @@ flutter:
   # To add assets to your package, add an assets section, like this:
   assets:
     - images/
-    - images/dashboard/
 
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages

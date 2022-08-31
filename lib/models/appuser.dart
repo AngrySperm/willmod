@@ -13,28 +13,17 @@ class AppUser {
   // 5 = gm
 
   int? id = 0;
-  String? kode = "";
-  String? nama = "";
+  dynamic? userData;
   String? userId = "";
   String? password = "";
-  String? namaJabatan = "";
-  String? telepon1="", telepon2="";
-  String? email="";
-  String? alamat="";
-  int? tipeUser = 0;
-  String? imageUrl = "";
-  DateTime? tanggalJoin;
-  DateTime? tanggalLahir;
-  String? test;
+  String? email = "";
 
   AppUser();
 
-  AppUser.create(this.id, this.kode, this.nama, this.userId, this.password,
-      this.namaJabatan, this.tipeUser, this.imageUrl);
+  AppUser.create(this.id, this.userId, this.password);
 
-  AppUser.nama(this.nama);
-
-  factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
+  factory AppUser.fromJson(Map<String, dynamic> json) =>
+      _$AppUserFromJson(json);
 
   Map<String, dynamic> toJson() => _$AppUserToJson(this);
 }
