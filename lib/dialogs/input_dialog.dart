@@ -34,6 +34,7 @@ class WiljosInputDialog {
                     padding: const EdgeInsets.fromLTRB(10, 20, 10, 15),
                     child: Text(
                       title,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           color: constant.colorTextLight,
                           fontSize: 22,
@@ -44,6 +45,7 @@ class WiljosInputDialog {
                     padding: const EdgeInsets.fromLTRB(10, 15, 10, 35),
                     child: Text(
                       prompt,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           color: constant.colorTextLight,
                           fontSize: 18,

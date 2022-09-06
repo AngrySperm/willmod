@@ -63,7 +63,8 @@ class WiljosItemSelector {
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
-      Map<String, Object>? additionalParams}) async {
+      Map<String, Object>? additionalParams,
+      String? orderBy}) async {
     List<Map<String, dynamic>> listDataConverted =
         listData.map((e) => {'name': e}).toList();
     Map<String, dynamic>? result = await showSingleSelectorDialog(
@@ -74,7 +75,8 @@ class WiljosItemSelector {
         filterField: filterField,
         filterValue: filterValue,
         additionalFilter: additionalFilter,
-        additionalParams: additionalParams);
+        additionalParams: additionalParams,
+        orderBy: orderBy);
     if (result == null) {
       return null;
     } else {
@@ -95,7 +97,8 @@ class WiljosItemSelector {
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
-      Map<String, Object>? additionalParams}) async {
+      Map<String, Object>? additionalParams,
+      String? orderBy}) async {
     List<Map<String, dynamic>> listDataConverted =
         listData.map((e) => {'name': e}).toList();
     List<Map<String, dynamic>>? resultList = await showMultipleSelectorDialog(
@@ -106,7 +109,8 @@ class WiljosItemSelector {
         filterField: filterField,
         filterValue: filterValue,
         additionalFilter: additionalFilter,
-        additionalParams: additionalParams);
+        additionalParams: additionalParams,
+        orderBy: orderBy);
     if (resultList == null) {
       return null;
     } else if (resultList.isEmpty) {
@@ -131,7 +135,8 @@ class WiljosItemSelector {
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
-      Map<String, Object>? additionalParams}) async {
+      Map<String, Object>? additionalParams,
+      String? orderBy}) async {
     List<Map<String, dynamic>>? resultList = await showSelectorDialog(
         context, width, height, title, listData,
         newItemBuilder: newItemBuilder,
@@ -139,7 +144,8 @@ class WiljosItemSelector {
         apiUrl: apiUrl,
         filterField: filterField,
         additionalFilter: additionalFilter,
-        additionalParams: additionalParams);
+        additionalParams: additionalParams,
+        orderBy: orderBy);
     if (resultList == null) {
       return null;
     } else if (resultList.isEmpty) {
@@ -161,7 +167,8 @@ class WiljosItemSelector {
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
-      Map<String, Object>? additionalParams}) async {
+      Map<String, Object>? additionalParams,
+      String? orderBy}) async {
     return showSelectorDialog(context, width, height, title, listData,
         newItemBuilder: newItemBuilder,
         singleSelection: false,
@@ -169,7 +176,8 @@ class WiljosItemSelector {
         apiUrl: apiUrl,
         filterField: filterField,
         additionalFilter: additionalFilter,
-        additionalParams: additionalParams);
+        additionalParams: additionalParams,
+        orderBy: orderBy);
   }
 
   static Future<List<Map<String, dynamic>>?> showSelectorDialog(
@@ -184,7 +192,8 @@ class WiljosItemSelector {
       String apiUrl = '',
       String filterField = "",
       String? additionalFilter,
-      Map<String, Object>? additionalParams}) async {
+      Map<String, Object>? additionalParams,
+      String? orderBy}) async {
     TextEditingController textEditingController = TextEditingController();
 
     RxList rxList = RxList(listData);
@@ -196,7 +205,7 @@ class WiljosItemSelector {
 
     if (apiUrl.isNotEmpty) {
       _reloadFromCloud(apiUrl, rxList, isSelected, filterField, '',
-          additionalFilter, additionalParams);
+          additionalFilter, additionalParams, orderBy);
     }
 
     return showDialog(
@@ -232,7 +241,8 @@ class WiljosItemSelector {
                         filterField,
                         textEditingController.value.text,
                         additionalFilter,
-                        additionalParams);
+                        additionalParams,
+                        orderBy);
                   }),
                   15.height,
                   Expanded(
@@ -383,7 +393,8 @@ class WiljosItemSelector {
       String filterField,
       String filterValue,
       String? additionalFilter,
-      Map<String, Object>? additionalParams) async {
+      Map<String, Object>? additionalParams,
+      String? orderBy) async {
     listData.clear();
     listSelected.clear();
 
@@ -405,10 +416,15 @@ class WiljosItemSelector {
         filterTxt += additionalFilter;
       }
 
+      String newOrder = firstFilterField;
+      if (orderBy != null) {
+        newOrder = orderBy;
+      }
+
       final params = {
         'take': 30,
         'page': 1,
-        'order': firstFilterField,
+        'order': newOrder,
         'order_method': 'ASC',
         'filter': filterValue.isEmpty
             ? (additionalFilter != null && additionalFilter.isNotEmpty
