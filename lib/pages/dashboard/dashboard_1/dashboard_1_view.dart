@@ -19,7 +19,7 @@ class WiljosDashboard1View extends StatelessWidget {
     WiljosDashboard1Controller con = getController();
     WiljosConstant constant = Get.put(WiljosConstant());
 
-    setStatusBarColor(Colors.white);
+    setStatusBarColor(getStatusBarColor());
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -33,12 +33,14 @@ class WiljosDashboard1View extends StatelessWidget {
         Navigator.of(context).pop(true);
       }),
       child: Scaffold(
+        drawer: getDrawer(),
+        appBar: getAppBar(),
         extendBody: true,
         bottomNavigationBar: Stack(
           children: [
             (Obx(() => BottomNavigationBar(
                   elevation: 5,
-                  // backgroundColor: Colors.white,
+                  backgroundColor: getBottomBarBackgroundColor(),
                   currentIndex: con.selectedIndex.value,
                   onTap: con.onBottomBarItemTapped,
                   type: BottomNavigationBarType.fixed,
@@ -76,5 +78,21 @@ class WiljosDashboard1View extends StatelessWidget {
     WiljosDashboard1Controller controller =
         Get.put(WiljosDashboard1Controller());
     return controller;
+  }
+
+  Color? getBottomBarBackgroundColor() {
+    return null;
+  }
+
+  Color getStatusBarColor() {
+    return Colors.white;
+  }
+
+  PreferredSizeWidget? getAppBar() {
+    return null;
+  }
+
+  Widget? getDrawer() {
+    return null;
   }
 }

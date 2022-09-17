@@ -70,7 +70,7 @@ class WiljosDashboardAppointment1Element {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600))),
                         15.width,
-                        Text(appointment['client_phone'],
+                        Text(appointment['client_phone'] ?? "",
                             style: TextStyle(
                                 color: constant.colorTextLight,
                                 fontSize: 18,
@@ -192,7 +192,7 @@ class WiljosDashboardAppointment1Element {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600))),
                         15.width,
-                        Text(appointment['client_phone'],
+                        Text(appointment['client_phone'] ?? "",
                             style: TextStyle(
                                 color: constant.colorTextLight,
                                 fontSize: 18,
@@ -233,7 +233,7 @@ class WiljosDashboardAppointment1Element {
                         ),
                         15.width,
                         Expanded(
-                            child: Text(appointment['description'],
+                            child: Text(appointment['description'] ?? "",
                                 maxLines: 3,
                                 style: TextStyle(
                                     color: constant.colorTextLight,

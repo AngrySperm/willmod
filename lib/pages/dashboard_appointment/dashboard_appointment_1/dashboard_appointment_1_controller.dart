@@ -111,10 +111,7 @@ class WiljosDashboardAppointment1Controller extends GetxController {
       var myDio = Get.put(MyDio());
       var myApp = Get.put(MyApp());
 
-      final params = {
-        'year': date.year,
-        'month': date.month,
-      };
+      final params = paramMonthlyAppointment(date);
       final response = await myDio.request(MyDio.REQ_GET, getApiMonthlyUrl(),
           mapQuery: params);
 
@@ -152,6 +149,13 @@ class WiljosDashboardAppointment1Controller extends GetxController {
   }
 
   // methods to overwrite
+
+  Map<String, dynamic> paramMonthlyAppointment(DateTime date) {
+    return {
+      'year': date.year,
+      'month': date.month,
+    };
+  }
 
   List<CalendarEventData> mapMonthlyAppointmentData(
       Map<String, dynamic> inputData) {

@@ -21,11 +21,12 @@ import 'package:willmod/pages/login/login_controller.dart';
 class WiljosLogin1View extends StatelessWidget {
   String? welcomeLabel;
   String? backgroundImage;
+  bool mobile = false;
 
-  WiljosLogin1View({
-    required this.welcomeLabel,
-    required this.backgroundImage,
-  });
+  WiljosLogin1View(
+      {required this.welcomeLabel,
+      required this.backgroundImage,
+      this.mobile = false});
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +49,11 @@ class WiljosLogin1View extends StatelessWidget {
               height: height,
             ),
             Image.asset(backgroundImage!,
-                width: width, height: height / 2, fit: BoxFit.cover),
+                width: width,
+                height: mobile ? height / 2.5 : height / 2,
+                fit: BoxFit.cover),
             Positioned(
-              top: height / 2,
+              top: mobile ? (height / 2.5) : (height / 2),
               child: Material(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40),
@@ -60,7 +63,7 @@ class WiljosLogin1View extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.fromLTRB(width / 10, 0, width / 10, 0),
                   width: width,
-                  height: height / 2,
+                  height: mobile ? (height - height / 2.5) : (height / 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -87,7 +90,7 @@ class WiljosLogin1View extends StatelessWidget {
                         con.password = text;
                       }),
                       SizedBox(
-                        height: height / 8,
+                        height: mobile ? (height / 6) : (height / 8),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -104,7 +107,7 @@ class WiljosLogin1View extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: height / 2 - 80 / 2,
+                top: mobile ? (height / 2.5 - 80 / 2) : (height / 2 - 80 / 2),
                 left: width / 1.6,
                 child: WiljosLogin1Element.buttonLogin(() {
                   con.login(() {
