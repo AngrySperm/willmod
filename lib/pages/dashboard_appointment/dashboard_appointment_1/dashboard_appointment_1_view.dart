@@ -35,8 +35,10 @@ class WiljosDashboardAppointment1View extends StatelessWidget {
               elevation: 10,
               backgroundColor: Colors.transparent,
               child: Container(
-                width: width * 0.9,
-                height: height * 0.6,
+                width: 540,
+                height: 555,
+                // width: width * 0.9,
+                // height: height * 0.6,
                 color: Colors.white,
                 child: Center(
                   child: CalendarControllerProvider(

@@ -53,7 +53,7 @@ class WiljosInputDialog {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 50,
                     width: width * 0.7,
                     child: TextFormField(
                       controller: textEditingController,
@@ -80,8 +80,8 @@ class WiljosInputDialog {
                         },
                         splashColor: Colors.black12,
                         child: SizedBox(
-                          width: 100,
-                          height: 35,
+                          width: 110,
+                          height: 40,
                           child: Center(
                             child: Text(
                               "Cancel",
@@ -97,10 +97,16 @@ class WiljosInputDialog {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: constant.colorPrimary),
-                        child: const Text(
-                          "Okay",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
+                        child: const SizedBox(
+                          width: 70,
+                          height: 40,
+                          child: Center(
+                            child: Text(
+                              "Okay",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w600),
+                            ),
+                          ),
                         ),
                         onPressed: () {
                           Navigator.pop(context, textEditingController.text);

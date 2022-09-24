@@ -63,7 +63,7 @@ class WiljosDashboardAppointment1Element {
                     Row(
                       children: [
                         SizedBox(
-                            width: 70,
+                            width: 85,
                             child: Text("Phone",
                                 style: TextStyle(
                                     color: constant.colorPrimary,
@@ -81,7 +81,7 @@ class WiljosDashboardAppointment1Element {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 70,
+                          width: 85,
                           child: Text("Product",
                               style: TextStyle(
                                   color: constant.colorPrimary,
@@ -102,7 +102,49 @@ class WiljosDashboardAppointment1Element {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 70,
+                          width: 85,
+                          child: Text("Doctor",
+                              style: TextStyle(
+                                  color: constant.colorPrimary,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        15.width,
+                        Expanded(
+                            child: Text(appointment['doctor_name'],
+                                maxLines: 3,
+                                style: TextStyle(
+                                    color: constant.colorTextLight,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600)))
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 85,
+                          child: Text("Therapist",
+                              style: TextStyle(
+                                  color: constant.colorPrimary,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        15.width,
+                        Expanded(
+                            child: Text(appointment['therapist_name'],
+                                maxLines: 3,
+                                style: TextStyle(
+                                    color: constant.colorTextLight,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600)))
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 85,
                           child: Text("Notes",
                               style: TextStyle(
                                   color: constant.colorPrimary,
@@ -185,7 +227,7 @@ class WiljosDashboardAppointment1Element {
                     Row(
                       children: [
                         SizedBox(
-                            width: 70,
+                            width: 85,
                             child: Text("Phone",
                                 style: TextStyle(
                                     color: constant.colorPrimary,
@@ -203,7 +245,7 @@ class WiljosDashboardAppointment1Element {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 70,
+                          width: 85,
                           child: Text("Product",
                               style: TextStyle(
                                   color: constant.colorPrimary,
@@ -224,7 +266,7 @@ class WiljosDashboardAppointment1Element {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 70,
+                          width: 85,
                           child: Text("Notes",
                               style: TextStyle(
                                   color: constant.colorPrimary,

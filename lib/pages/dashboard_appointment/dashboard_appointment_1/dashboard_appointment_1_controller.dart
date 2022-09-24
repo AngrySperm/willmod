@@ -63,15 +63,7 @@ class WiljosDashboardAppointment1Controller extends GetxController {
       var myDio = Get.put(MyDio());
       var myApp = Get.put(MyApp());
 
-      final params = {
-        'take': 100,
-        'page': 1,
-        'order': '',
-        'order_method': 'ASC',
-        'with_product': 1,
-        'with_customer': 1,
-        'with_bc': 1,
-      };
+      final params = paramDailyAppointment();
 
       if (date != null) {
         params['filter'] = filterByDate;
@@ -155,6 +147,20 @@ class WiljosDashboardAppointment1Controller extends GetxController {
       'year': date.year,
       'month': date.month,
     };
+  }
+
+  Map<String, dynamic> paramDailyAppointment() {
+    final params = {
+      'take': 100,
+      'page': 1,
+      'order': '',
+      'order_method': 'ASC',
+      'with_product': 1,
+      'with_customer': 1,
+      'with_bc': 1,
+    };
+
+    return params;
   }
 
   List<CalendarEventData> mapMonthlyAppointmentData(
