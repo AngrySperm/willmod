@@ -440,12 +440,19 @@ class WiljosItemSelector {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map<String, dynamic> responseBody = response.data;
-        List listRawData = responseBody["data"];
-        for (dynamic item in listRawData) {
-          Map<String, dynamic> map = item as Map<String, dynamic>;
-          listData.add(map);
-          listSelected.add(false);
+
+        if (responseBody["success"]) {
+          List listRawData = responseBody["data"];
+          for (dynamic item in listRawData) {
+            Map<String, dynamic> map = item as Map<String, dynamic>;
+            listData.add(map);
+            listSelected.add(false);
+          }
+        } else {
+          showMessage(responseBody["message"]);
         }
+      } else {
+        showMessage(response.statusMessage ?? "");
       }
     } on TimeoutException catch (_) {
       showMessage("Could not connect to server");

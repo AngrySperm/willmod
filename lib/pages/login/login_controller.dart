@@ -74,6 +74,8 @@ class WiljosLoginController extends GetxController {
       try {
         EasyLoading.show(status: 'Loading...');
 
+        onBeforeLogin();
+
         var myDio = Get.put(MyDio());
         var myApp = Get.put(MyApp());
 
@@ -165,6 +167,8 @@ class WiljosLoginController extends GetxController {
   }
 
   // methods to overwrite
+
+  void onBeforeLogin() {}
 
   void onLoginSuccess() {}
 
