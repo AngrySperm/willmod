@@ -102,7 +102,7 @@ class WiljosLogin1Element {
             width: 80,
             height: 80,
             child: const Icon(
-              Icons.west,
+              Icons.east,
               size: 30,
               color: Colors.white,
             )),
