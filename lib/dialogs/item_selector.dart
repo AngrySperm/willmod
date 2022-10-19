@@ -60,6 +60,7 @@ class WiljosItemSelector {
       {Function(Map<String, dynamic>)? newItemBuilder,
       bool fromApi = false,
       String apiUrl = '',
+      String? hostUrl,
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
@@ -72,6 +73,7 @@ class WiljosItemSelector {
         newItemBuilder: newItemBuilder,
         fromApi: fromApi,
         apiUrl: apiUrl,
+        hostUrl: hostUrl,
         filterField: filterField,
         filterValue: filterValue,
         additionalFilter: additionalFilter,
@@ -94,6 +96,7 @@ class WiljosItemSelector {
       {Function(Map<String, dynamic>)? newItemBuilder,
       bool fromApi = false,
       String apiUrl = '',
+      String? hostUrl,
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
@@ -106,6 +109,7 @@ class WiljosItemSelector {
         newItemBuilder: newItemBuilder,
         fromApi: fromApi,
         apiUrl: apiUrl,
+        hostUrl: hostUrl,
         filterField: filterField,
         filterValue: filterValue,
         additionalFilter: additionalFilter,
@@ -132,6 +136,7 @@ class WiljosItemSelector {
       {Function(Map<String, dynamic>)? newItemBuilder,
       bool fromApi = false,
       String apiUrl = '',
+      String? hostUrl,
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
@@ -142,6 +147,7 @@ class WiljosItemSelector {
         newItemBuilder: newItemBuilder,
         singleSelection: true,
         apiUrl: apiUrl,
+        hostUrl: hostUrl,
         filterField: filterField,
         additionalFilter: additionalFilter,
         additionalParams: additionalParams,
@@ -164,6 +170,7 @@ class WiljosItemSelector {
       {Function(Map<String, dynamic>)? newItemBuilder,
       bool fromApi = false,
       String apiUrl = '',
+      String? hostUrl,
       String filterField = "",
       String filterValue = "",
       String? additionalFilter,
@@ -174,6 +181,7 @@ class WiljosItemSelector {
         singleSelection: false,
         multiSelection: true,
         apiUrl: apiUrl,
+        hostUrl: hostUrl,
         filterField: filterField,
         additionalFilter: additionalFilter,
         additionalParams: additionalParams,
@@ -190,6 +198,7 @@ class WiljosItemSelector {
       bool singleSelection = true,
       bool multiSelection = false,
       String apiUrl = '',
+      String? hostUrl,
       String filterField = "",
       String? additionalFilter,
       Map<String, Object>? additionalParams,
@@ -204,7 +213,7 @@ class WiljosItemSelector {
     }
 
     if (apiUrl.isNotEmpty) {
-      _reloadFromCloud(apiUrl, rxList, isSelected, filterField, '',
+      _reloadFromCloud(hostUrl, apiUrl, rxList, isSelected, filterField, '',
           additionalFilter, additionalParams, orderBy);
     }
 
@@ -235,6 +244,7 @@ class WiljosItemSelector {
                   ),
                   _getSearchTextField(width * 0.7, textEditingController, () {
                     _reloadFromCloud(
+                        hostUrl,
                         apiUrl,
                         rxList,
                         isSelected,
@@ -387,6 +397,7 @@ class WiljosItemSelector {
   }
 
   static void _reloadFromCloud(
+      String? hostUrl,
       String apiUrl,
       RxList listData,
       List<bool> listSelected,
@@ -399,7 +410,8 @@ class WiljosItemSelector {
     listSelected.clear();
 
     try {
-      var myDio = Get.put(MyDio());
+      var myDio;
+      myDio = Get.put(MyDio());
       var myApp = Get.put(MyApp());
 
       String filterTxt = '';
