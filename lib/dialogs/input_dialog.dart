@@ -6,14 +6,53 @@ import 'package:get/get.dart';
 import 'package:willmod/configs/constant.dart';
 import 'package:willmod/configs/myapp.dart';
 import 'package:willmod/configs/mydio.dart';
+import 'package:willmod/custom_widgets/numeric_formatter.dart';
 import 'package:willmod/globals/globalwidget.dart';
+// import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 class WiljosInputDialog {
   static Future<dynamic?> showInputDialog(BuildContext context, double width,
       double height, String title, String prompt, dynamic initialValue,
-      {isNumericInput = false, isObscure = false}) async {
-    TextEditingController textEditingController = TextEditingController();
+      {isNumericInput = false, isObscure = false, double fontSize = 18}) async {
+    late TextEditingController textEditingController;
+
+    // if (isNumericInput) {
+    //   double newInitial = 0;
+    //   if (initialValue is String) {
+    //     newInitial = initialValue.toDouble();
+    //   } else {
+    //     newInitial = initialValue;
+    //   }
+    //   // textEditingController = MoneyMaskedTextController(
+    //   //     decimalSeparator: ",",
+    //   //     thousandSeparator: ".",
+    //   //     initialValue: newInitial,
+    //   //     precision: 1);
+    // } else {
+
+    textEditingController = TextEditingController();
     textEditingController.text = initialValue;
+
+    if (isNumericInput) {
+      bool isNumeric = false;
+      double doubleInitialValue = 0;
+      try {
+        doubleInitialValue = double.parse(initialValue);
+        isNumeric = true;
+      } catch (_) {}
+      if (isNumeric) {
+        String newInitialValue = MyApp.NUMBER_FORMAT.format(doubleInitialValue);
+        textEditingController.text = newInitialValue;
+      }
+    }
+
+    // }
+
+    // var maskFormatter = new MaskTextInputFormatter(
+    //     mask: '+# (###) ###-##-##',
+    //     filter: {"#": RegExp(r'[0-9]')},
+    //     type: MaskAutoCompletionType.lazy);
+
     WiljosConstant constant = Get.put(WiljosConstant());
 
     return showDialog(
@@ -56,6 +95,11 @@ class WiljosInputDialog {
                     height: 50,
                     width: width * 0.7,
                     child: TextFormField(
+                      inputFormatters:
+                          isNumericInput ? [ThousandsFormatter()] : null,
+                      // inputFormatters: [maskFormatter],
+                      textAlign:
+                          isNumericInput ? TextAlign.center : TextAlign.start,
                       controller: textEditingController,
                       keyboardType: isNumericInput
                           ? TextInputType.number
@@ -64,7 +108,7 @@ class WiljosInputDialog {
                       autofocus: true,
                       obscureText: isObscure,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: fontSize,
                           color: constant.colorText,
                           fontWeight: FontWeight.w500,
                           letterSpacing: 0.5),
